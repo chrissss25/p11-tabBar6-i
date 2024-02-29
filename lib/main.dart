@@ -1,43 +1,76 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(AppMiTabBar());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class AppMiTabBar extends StatelessWidget {
+  const AppMiTabBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
+      debugShowCheckedModeBanner: false,
+      title: "Ejemplo Tabbar christian heredia",
       theme: ThemeData(
-        // useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MiPaginaInicial(),
     );
   }
-}
+} //fin AppMiTabBar
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+//Stateful
+class MiPaginaInicial extends StatefulWidget {
+  const MiPaginaInicial({Key? key}) : super(key: key);
 
   @override
+  State<MiPaginaInicial> createState() => _MiPaginaInicialState();
+} //MiPaginaInicial
+
+class _MiPaginaInicialState extends State<MiPaginaInicial> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Tabbar christian heredia"),
+          centerTitle: true,
+          bottom: TabBar(tabs: [
+            Tab(text: "celulares", icon: Icon(Icons.face_2)),
+            Tab(text: "modelos", icon: Icon(Icons.favorite)),
+            Tab(
+                text: "cap",
+                icon: Icon(
+                    Icons.signal_cellular_connected_no_internet_0_bar_sharp)),
+            Tab(text: "color", icon: Icon(Icons.cake_sharp))
+          ] //fin tabs
+              ), //fin bottomTabBar
         ),
-      ),
-    );
-  }
-}
+        body: TabBarView(children: const <Widget>[
+          Center(
+              child: Text(
+            "apple 1",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          )),
+          Center(
+            child: Text(
+              "apple 2",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
+          ),
+          Center(
+            child: Text(
+              "apple 3",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
+          ),
+          Center(
+              child: Text(
+            "apple 4",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          ))
+        ]),
+      ), //fin de Scaffold
+    ); //DefaultTabController
+  } //fin widget
+} //_MiPagionaInicial
